@@ -1,38 +1,84 @@
 import java.util.Scanner;
 
-class Student {
-    int academic;
+class Employee {
+    int id;
+    String name, address;
+    double salary;
 
-    void getAcademic(Scanner sc) {
-        System.out.print("Enter Academic Marks: ");
-        academic = sc.nextInt();
-    }}
-
-interface Sports {
-    void getSports(Scanner sc);
+    Employee(int id, String name, double salary, String address) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+        this.address = address;
+    }
 }
 
-class Result extends Student implements Sports {
-    int sports;
+class Teacher extends Employee {
 
-    public void getSports(Scanner sc) {
-        System.out.print("Enter Sports Marks: ");
-        sports = sc.nextInt();
+    String dept, subject;
+
+    Teacher(int id, String name, double salary,
+            String address, String dept, String subject) {
+
+        super(id, name, salary, address);
+
+        this.dept = dept;
+        this.subject = subject;
     }
 
     void display() {
-        System.out.println("\n--- Student Result ---");
-        System.out.println("Academic Marks: " + academic);
-        System.out.println("Sports Marks: " + sports);
-    }}
+        System.out.println("\n----- Teacher Details -----");
+        System.out.println("Employee ID : " + id);
+        System.out.println("Name        : " + name);
+        System.out.println("Salary      : " + salary);
+        System.out.println("Address     : " + address);
+        System.out.println("Department  : " + dept);
+        System.out.println("Subject     : " + subject);
+    }
+}
 
 public class Main {
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        Result r = new Result();
-        r.getAcademic(sc);
-        r.getSports(sc);
-        r.display();
+
+        System.out.print("Enter number of teachers: ");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        Teacher[] t = new Teacher[n];
+
+        for (int i = 0; i < n; i++) {
+
+            System.out.println("\nEnter details of Teacher " + (i + 1));
+
+            System.out.print("Enter Employee ID: ");
+            int id = sc.nextInt();
+            sc.nextLine();
+
+            System.out.print("Enter Name: ");
+            String name = sc.nextLine();
+
+            System.out.print("Enter Salary: ");
+            double salary = sc.nextDouble();
+            sc.nextLine();
+
+            System.out.print("Enter Address: ");
+            String address = sc.nextLine();
+
+            System.out.print("Enter Department: ");
+            String dept = sc.nextLine();
+
+            System.out.print("Enter Subject: ");
+            String sub = sc.nextLine();
+
+            t[i] = new Teacher(id, name, salary, address, dept, sub);
+        }
+
+        System.out.println("\n========== TEACHER DETAILS ==========");
+
+        for (int i = 0; i < n; i++)
+            t[i].display();
     }
 }
