@@ -1,50 +1,38 @@
 import java.util.Scanner;
 
-// Parent class
 class Employee {
-
-    int empid;
-    String name;
+    int id;
+    String name, address;
     double salary;
-    String address;
 
-    // Constructor
-    Employee(int empid, String name, double salary, String address) {
-
-        this.empid = empid;
+    Employee(int id, String name, double salary, String address) {
+        this.id = id;
         this.name = name;
         this.salary = salary;
         this.address = address;
     }
 }
 
-// Child class
 class Teacher extends Employee {
 
-    String department;
-    String subject;
+    String dept, subject;
 
-    // Constructor
-    Teacher(int empid, String name, double salary, String address,
-            String department, String subject) {
+    Teacher(int id, String name, double salary,
+            String address, String dept, String subject) {
 
-        // Calling parent class constructor
-        super(empid, name, salary, address);
+        super(id, name, salary, address);
 
-        this.department = department;
+        this.dept = dept;
         this.subject = subject;
     }
 
-    // Method to display teacher details
     void display() {
-
         System.out.println("\n----- Teacher Details -----");
-
-        System.out.println("Employee ID : " + empid);
+        System.out.println("Employee ID : " + id);
         System.out.println("Name        : " + name);
         System.out.println("Salary      : " + salary);
         System.out.println("Address     : " + address);
-        System.out.println("Department  : " + department);
+        System.out.println("Department  : " + dept);
         System.out.println("Subject     : " + subject);
     }
 }
@@ -55,21 +43,18 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        // Read number of teachers
         System.out.print("Enter number of teachers: ");
         int n = sc.nextInt();
         sc.nextLine();
 
-        // Array of Teacher objects
-        Teacher[] teachers = new Teacher[n];
+        Teacher[] t = new Teacher[n];
 
-        // Input teacher details
         for (int i = 0; i < n; i++) {
 
             System.out.println("\nEnter details of Teacher " + (i + 1));
 
             System.out.print("Enter Employee ID: ");
-            int empid = sc.nextInt();
+            int id = sc.nextInt();
             sc.nextLine();
 
             System.out.print("Enter Name: ");
@@ -83,22 +68,18 @@ public class Main {
             String address = sc.nextLine();
 
             System.out.print("Enter Department: ");
-            String department = sc.nextLine();
+            String dept = sc.nextLine();
 
             System.out.print("Enter Subject: ");
-            String subject = sc.nextLine();
+            String sub = sc.nextLine();
 
-            // Store object in array
-            teachers[i] = new Teacher(empid, name, salary,
-                    address, department, subject);
+            t[i] = new Teacher(id, name, salary, address, dept, sub);
         }
 
-        // Display teacher details
         System.out.println("\n========== TEACHER DETAILS ==========");
 
-        for (int i = 0; i < n; i++) {
-            teachers[i].display();
-        }
+        for (int i = 0; i < n; i++)
+            t[i].display();
 
         sc.close();
     }
