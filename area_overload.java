@@ -1,4 +1,3 @@
-```java id="2v9kdt"
 import java.util.Scanner;
 
 class areaoverload
@@ -50,6 +49,4 @@ class areaoverload
         double base = sc.nextDouble();
         double height = sc.nextDouble();
         System.out.println("Area of Triangle = " + obj.area(base, height, 1));
-    }
-}
-```
+    }}
