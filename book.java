@@ -1,85 +1,58 @@
-```java id="5q1nzc"
 import java.util.Scanner;
 
-class Publisher
-{
-    String publisherName;
-
-    void getPublisher(Scanner sc)
-    {
-        System.out.print("Enter Publisher Name: ");
-        publisherName = sc.nextLine();
-    }
+class Publisher {
+    String publisher;
 }
 
-class Book extends Publisher
-{
-    String bookTitle;
-    String author;
+class Book extends Publisher {
+    String title, author;
 
-    void getBook(Scanner sc)
-    {
+    void getData(Scanner sc) {
+        System.out.print("Enter Publisher Name: ");
+        publisher = sc.nextLine();
+
         System.out.print("Enter Book Title: ");
-        bookTitle = sc.nextLine();
+        title = sc.nextLine();
 
         System.out.print("Enter Author Name: ");
         author = sc.nextLine();
     }
-}
 
-class Literature extends Book
-{
-    void display()
-    {
-        System.out.println("\n--- Literature Book Details ---");
-        System.out.println("Title: " + bookTitle);
+    void display(String type) {
+        System.out.println("\n--- " + type + " Book Details ---");
+        System.out.println("Title: " + title);
         System.out.println("Author: " + author);
-        System.out.println("Publisher: " + publisherName);
+        System.out.println("Publisher: " + publisher);
     }
 }
 
-class Fiction extends Book
-{
-    void display()
-    {
-        System.out.println("\n--- Fiction Book Details ---");
-        System.out.println("Title: " + bookTitle);
-        System.out.println("Author: " + author);
-        System.out.println("Publisher: " + publisherName);
-    }
-}
+class Literature extends Book {}
+class Fiction extends Book {}
 
-public class prgm13
-{
-    public static void main(String[] args)
-    {
+public class Main {
+    public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Choose Category:");
         System.out.println("1. Literature");
         System.out.println("2. Fiction");
+        System.out.print("Enter Choice: ");
 
-        int choice = sc.nextInt();
+        int ch = sc.nextInt();
         sc.nextLine();
 
-        if (choice == 1)
-        {
+        if (ch == 1) {
             Literature l = new Literature();
-            l.getPublisher(sc);
-            l.getBook(sc);
-            l.display();
+            l.getData(sc);
+            l.display("Literature");
         }
-        else if (choice == 2)
-        {
+        else if (ch == 2) {
             Fiction f = new Fiction();
-            f.getPublisher(sc);
-            f.getBook(sc);
-            f.display();
+            f.getData(sc);
+            f.display("Fiction");
         }
-        else
-        {
+        else {
             System.out.println("Invalid Choice");
         }
     }
 }
-```
