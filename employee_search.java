@@ -1,71 +1,52 @@
 import java.util.Scanner;
 
-class Employee
-{
-    int eNo;
-    String eName;
-    double eSalary;
+class Employee {
+    int no;
+    String name;
+    double salary;
 
-    void read(Scanner sc)
-    {
+    void read(Scanner sc) {
         System.out.print("Enter Employee Number: ");
-        eNo = sc.nextInt();
+        no = sc.nextInt();
         sc.nextLine();
 
         System.out.print("Enter Employee Name: ");
-        eName = sc.nextLine();
+        name = sc.nextLine();
 
         System.out.print("Enter Employee Salary: ");
-        eSalary = sc.nextDouble();
+        salary = sc.nextDouble();
     }
 
-    void display()
-    {
-        System.out.println("Employee Number : " + eNo);
-        System.out.println("Employee Name   : " + eName);
-        System.out.println("Employee Salary : " + eSalary);
-    }
-}
+    void display() {
+        System.out.println("\nEmployee Found:");
+        System.out.println("Employee Number : " + no);
+        System.out.println("Employee Name   : " + name);
+        System.out.println("Employee Salary : " + salary);
+    }}
 
-public class EmployeeSearch
-{
-    public static void main(String[] args)
-    {
+public class Main {
+    public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter number of employees: ");
         int n = sc.nextInt();
+        Employee[] e = new Employee[n];
 
-        Employee emp[] = new Employee[n];
-
-        for (int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++) {
             System.out.println("\nEnter details of Employee " + (i + 1));
-            emp[i] = new Employee();
-            emp[i].read(sc);
+            e[i] = new Employee();
+            e[i].read(sc);
         }
 
         System.out.print("\nEnter Employee Number to search: ");
-        int searchNo = sc.nextInt();
+        int search = sc.nextInt();
 
-        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            if (e[i].no == search) {
+                e[i].display();
+                return;
+            }}
 
-        for (int i = 0; i < n; i++)
-        {
-            if (emp[i].eNo == searchNo)
-            {
-                System.out.println("\nEmployee Found:");
-                emp[i].display();
-                found = true;
-                break;
-            }
-        }
-
-        if (!found)
-        {
-            System.out.println("Employee not found.");
-        }
-
-        sc.close();
-    }
-}
+        System.out.println("Employee not found.");
+    }}
